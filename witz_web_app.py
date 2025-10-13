@@ -17,9 +17,12 @@ if st.button("Witze anzeigen 😄"):
     emoji = random.choice(emojis)
     jokes = pyjokes.get_jokes(language='de', category='neutral')
     zufallswitze = random.sample(jokes, min(3, len(jokes)))
-    st.markdown(f"<div style='background-color:{farbe}; padding:10px; border-radius:10px;'>"
-                f"<h3>{emoji}</h3><p>{'<br><br>'.join(zufallswitze)}</p></div>",
-                unsafe_allow_html=True)
+    st.markdown(f"""
+        <div style='background-color:{farbe}; padding:15px; border-radius:10px;'>
+            <h3 style='color:black;'>{emoji}</h3>
+            <p style='color:black;'>{'<br><br>'.join(zufallswitze)}</p>
+        </div>
+    """, unsafe_allow_html=True)
 
 # Online-Witze (WitzAPI.de)
 if st.button("Zugabe? 🌐"):
@@ -30,13 +33,19 @@ if st.button("Zugabe? 🌐"):
         daten = response.json()
         if daten and "text" in daten[0]:
             witz = daten[0]["text"]
-            st.markdown(f"<div style='background-color:{farbe}; padding:10px; border-radius:10px;'>"
-                        f"<p>{witz}</p><p>🌐 WitzAPI.de</p></div>",
-                        unsafe_allow_html=True)
+            st.markdown(f"""
+                <div style='background-color:{farbe}; padding:15px; border-radius:10px;'>
+                    <p style='color:black;'>{witz}</p>
+                    <p style='color:gray;'>🌐 WitzAPI.de</p>
+                </div>
+            """, unsafe_allow_html=True)
         else:
             raise ValueError("Keine Witze erhalten")
     except:
         fallback = "API nicht erreichbar – vielleicht ein Witz aus der Steckdose?"
-        st.markdown(f"<div style='background-color:{farbe}; padding:10px; border-radius:10px;'>"
-                    f"<p>{fallback}</p><p>⚠️ Quelle: Offline</p></div>",
-                    unsafe_allow_html=True)
+        st.markdown(f"""
+            <div style='background-color:{farbe}; padding:15px; border-radius:10px;'>
+                <p style='color:black;'>{fallback}</p>
+                <p style='color:gray;'>⚠️ Quelle: Offline</p>
+            </div>
+        """, unsafe_allow_html=True)
