@@ -33,6 +33,6 @@ pip install -r requirements.txt
 streamlit run witz_web_app.py
 ```
 
-## ❤️ Autor
+## 👩‍💻 Autor
 
 Erstellt mit Spaß und Neugier – von Serena
